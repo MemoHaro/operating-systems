@@ -2,6 +2,18 @@
 
 **CSUN Server**: k200.ecs.csun.edu
 
+Best way to access (So we start with a bash shell):
+
+    ssh -t yourhost bash
+
+    or
+
+    ssh -t yourhost exec -a bash -l bash
+
+Not sure which one works better. Second one logs directly in I think
+
+---
+
 To print on the server:
 
     lp -d2215
