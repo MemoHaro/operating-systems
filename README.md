@@ -4,11 +4,11 @@
 
 Best way to access (So we start with a bash shell):
 
-    ssh -t yourhost bash
+    ssh -t k200.ecs.csun.edu bash
 
     or
 
-    ssh -t yourhost exec -a bash -l bash
+    ssh -t k200.ecs.csun.edu exec -a bash -l bash
 
 Not sure which one works better. Second one logs directly in I think
 
