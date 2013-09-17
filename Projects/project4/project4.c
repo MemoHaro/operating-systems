@@ -11,7 +11,7 @@
 /* print info on access modes	*/
 /*				*/
 
-main(int argc, char *argv[]) 
+int main(int argc, char *argv[]) 
 {
   int errors, k, perm;
   struct stat buf;
