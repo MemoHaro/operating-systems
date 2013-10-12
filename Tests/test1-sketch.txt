@@ -1,0 +1,87 @@
+Definitions
+
+Chapter 1
+
+Computer System - hardware, operating system, application programs and users
+
+Hardware - CPU, memory, input/output(I/O)
+
+Operating System - program that manages the computer hardware, can be viewed as a resource allocator. This means it must manage CPU time, memory space, file-storage space, I/O devices. An operating system is also a control program.
+
+Control Program - manages the execution of user programs to prevent errors and improper use of the computer. Concerned with control of I/O devices.
+
+Kernel - One program running at all times on the computer, with all else being system programs and application programs.
+
+Application Programs - word processors, spreadsheets, compilers, etc.
+
+
+Bootstrap Program - Initial program at boot. Starts all aspects of the system from CPU registers to device controllers. Stored in read-only memory (ROM) or erasable programmable read-only memory (EEPROM), known as firmware.
+
+Interrupt - A signal emitted by hardware or software indicating an event needs attention from the operating system. Interrupts immediately transfer execution to a fixed location.
+
+Hardware interrupt - signal sent from a piece of hardware such as a disk controller
+
+Software interrupt - executed through a system call, which alerts the operating system to perform some task.
+
+Interrupt Vector - table of pointers stored in low memory to indicate the memory location of the interrupt service routine.
+
+Chapter 5 - CPU Scheduling
+
+Process Scheduling - switching the CPU among processes. Basis of multiprogrammed operating systems. Goal is to have some porocess running at all times to maximize CPU utilization. When the CPU is waiting for I/O requests to come back other processes are started by the CPU.
+
+Cycle - Process execution consists of alternating CPU execution and I/O wait.
+
+CPU Burst - load instructions, increment registers, read from file, etc.
+
+I/O burst - write to disk, other I/O stuff.
+
+Short-term Scheduler - when the CPU becomes idle, a process is selected from the processes in memory that are ready to execute and allocates the CPU to that process.
+
+Nonpreemptive (cooperative) scheduling - Once the CPU has been allocated to a process, the process keeps the CPU until it releases the CPU by terminating or by switching to the waiting state. Performs scheduling only when:
+
+* When a process switches from the running state to the waiting state (for example, as the result of an I/O request or an invocation of wait for the termination of one of the child processes)
+
+* When a process terminates
+
+Preemptive scheduling - Performs scheduling under the same circumstances as nonpreemptive and:
+
+* When a process switches from the running state to the ready state (for example, when an interrupt occurs)
+
+* When a process switches from the waiting state to the ready state (for example, at completion of I/O)
+
+Dispatcher - the module that gives control of the CPU to the process selected by the short-term scheduler. Involves:
+
+* Switching context
+
+* Switching to user mode
+
+* Jumping to the proper location in the user program to restart that program
+
+Dispatch latency - the time it takes for the dispatcher to stop one process and start running another.
+
+Scheduling Criteria - includes CPU utilization, throughput, turnaround time, waiting time, and response time.
+
+CPU utilization - range from 0 to 100 percent on how busy the system is.
+
+Throughput - the number of processes that are completed per time unit.
+
+Turnaround time - The interval from the time of submission of a process to the time of completion.
+
+Waiting time - the sum of the periods spent waiting in the ready queue.
+
+Response time - the time it takes to start responding, not the time it takes to output the response.
+
+Scheduling Algorithms - the way the CPU selects processes in the ready queue.
+
+First-come, First-served (FCFS) scheduling algorithm - The process that requests the CPU first is allocated the CPU first. Simple to implement with a FIFO queue but average time is slow.
+
+
+
+
+
+
+
+
+
+
+
