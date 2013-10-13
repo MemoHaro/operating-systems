@@ -1,0 +1,29 @@
+Chapter 10 - File System Interface
+
+Objective:
+
+* To explain the function of file systems.
+
+* To describe the interfaces to file systems.
+
+* To discuss file-system design tradeoffs, including access methods, file sharing, file locking, and directory structure.
+
+* To explore file-system protection.
+
+Summary:
+
+	A file is an abstract data type defined and implemented by the operating system. It is a sequence of logical records. A logical record may be a byte, a line (of fixed or variable length), or a more complex data item. The operating system may specifically support various record types or may leave that support to the application program.
+
+	The major task for the operating system is to map the logical file concept onto physical storage devices such as magnetic tape or disk. Since the physical record size of the device many not be the same as the logical record size, it may be necessary to order logical records into physical records. Again, this task my be supported by the operating system or left for the application program.
+
+	Each device in a file system keeps a volume table of contents or device directory listing the location of files on the device. In addition, it is useful to create directories to allow files to be organized. A single-level directory in a multiuser system causes naming problems, since each file must have a unique name. A two-level directory solves this problem by creating a separate directory for each user. Each user has her own directory, containing her own files. The directory lists the files by name and includes the file's location on the disk, length, type, owner, time of creation, time of last use, and so on.
+
+	The natural generalization of a two-level directory is a tree-structured directory. A tree-structured directory allows a user to create subdirectories to organize files. Acyclic-graph directory structures enable users to share subdirectories and file but complicate searching and deletion. A general graph structure allows complete flexibility in the sharing of files and directories but sometimes requires garbage collection to recover unused disk space.
+
+	Disk are segmented into one or more volumes, each containing a file system or left "raw". File systems may be mounted into the system's naming structures to make them available. The naming scheme varies by operating system. Once mounted, the files within the volume are available for use. File systems may be unmounted to disable access or for maintenance.
+
+	File sharing depnds on the semantics provided by the system. Files may have multiple readers, multiple writers, or limits on sharing. Distributed file systems can allow client hosts to mount volumes or directories from servers, as long as they can access each other across a network. Remote file systems present challenges in reliability, performance, and security. Distributed information systems maintain user, host and access information so that clients and server cna share state information to mangage use and access.
+
+	Since files are the main information-storage mechanism in most computer systems, file protection is needed. Access to files can be controlled separately for each type of access - read, write, execute, append, delete, list directory, and so on. File protection can be provided by passwords, by access lists, or by other techniques.
+
+

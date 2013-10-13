@@ -1,0 +1,28 @@
+Chapter 5 - CPU Scheduling
+
+Objectives:
+
+* To introduce CPU scheduling, which is the basis for multiprogrammed operating systems.
+
+* To describe various CPU-scheduling algorithms.
+
+* To discuss evaluation criteria for selecting a CPU-scheduling algorithm for a particular system.
+
+Summary:
+
+	CPU scheduling is the task of selecting a waiting process from the ready queue and allocating the CPU to it. The CPU is allocated to the selected process by the dispatcher.
+	
+	First-come, first-served (FCFS) scheduling is the simplest scheduling algorithm, but it can cause short processes to wait for very long processes. Jobs are processes in order as they come into the ready queue. Shortest-job-first (SJF) scheduling is provably optimal, providing the shortest average waiting time. Implementing SJF scheduling is difficult, however, because predicting the length of the next CPU burst is difficult. The SJF algorithm is a special case of the general priority scheduling algorithm, which simply allocates the CPU to the highest-priority process. Both priority and SJF scheduling may suffer from starvation, where low priority processes waiting to run are never executed. Aging is a technique to prevent starvation where the priority of processes is gradually increased as time goes on.
+
+	Round-robin (RR) scheduling is more appropriate for a time-shared (interactive) system. RR scheduling allocates the CPU to the first process in the ready queue for q time units, where q is the time quantum. After q time units, if the process has not relinquished the CPU, it is preempted, and the process is put at the tail of the ready queue. The major problem is the selection of the time quantum. If the quantum is too large, RR scheduling degenerates to FCFS scheduling; if the quantum is too small, scheduling overhead in the form of context-switch time becomes excessive.
+
+	The FCFS algorithm is nonpreemptive; the RR algorithm is preemptive. The SJF and priority algorithms may be either preemptive or nonpreemptive. When SJF if preemptive it is called shortest-remaining-time-first scheduling, when a process arrives in the queue, check its burst time against the currently running process and switch if it is lower. The same goes for a preemptive priority algorithm, check if the new process has a higher priority then the one running. A nonpreemptive algorithm only switches processes when a process switches from running state to waiting state or when a process terminates. A preemptive algorithm can switch processes when interrupts occur or when I/O is finished, as well as what a nonpreemptive can do.
+
+	Multilevel queue algorithms allow different algorithms to be used for different classes of processes. The most common model includes a foreground interactive queue that uses RR scheduling and a background batch queue that uses FCFS scheduling. Multilevel feedback queues allow processes to move from one queue to another.
+
+	Many contemporary computer systems support multiple processors and allow each processor to schedule itself independently. Typically, each processor maintains its own private queue of processes (or threads), all of which are available to run. Issues related to multiprocessor scheduling include processor affinity and load balancing.
+
+	Operating systems supporting threads at the kernel level must schedule threads - not processes - for execution. This is the cases with Solaris and Windows XP. Both of these systems schedule threads using preemptive, priority-based scheduling algorithms, including support for real-time threads. The Linux process scheduler uses a priority-based algorithm with real-time support as well. The scheduling algorithms for theses three operating systems typically favor interactive over batch and CPU-bound processes.
+
+	The wide variety of scheduling algorithms demands that we have methods to select among algorithms. Analytic methods use mathematical analysis to determine the performance of an algorithm. Simulation methods determine performance by imitating the scheduling algorithm on a "representative" sample of processes and computing the resulting performance. However, simulation can at best provide an approximation of actual system performance; the only reliable technique for evaluating a scheduling algorithm is to implement the algorithm on an actual system and monitor its performance in a "real-world" environment.
+    

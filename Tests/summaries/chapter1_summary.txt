@@ -1,0 +1,33 @@
+Chapter 1 - Introduction
+
+Objectives:
+
+* To provide a grand tour of the major operating systems components.
+
+* To provide coverage of basic computer system organization.
+
+Summary:	
+
+	An operating system is software that manages the computer hardware as well as providing an environment for application programs to run. Perhaps the most visible aspect of an operating system is the interface to the computer system it provides to the human user.
+
+	For a computer to do its job of executing programs, the programs must be in main memory. Main memory is the only large storage area that the processor can access directly. It is an array of words or bytes, ranging in size from millions to billions. Each word in memory has its own address. The main memory is usually a volatile storage device that loses its contents when power is turned off or lost. Most computer systems provide secondary storage as an extension of main memory. Secondary storage provides a form of non-volatile storage that is capable of holding large quantities of data permanently. The most common secondary-storage device is a magnetic disk, which provides storage of both programs and data. 
+
+	The wide variety of storage system in a computer system can be organized in a hierarchy according to speed and cost. The higher levels are expensive, bu they are fast. As we move down the hierarchy, the cost per bit generally decreases, whereas the access time generally increases.
+
+	There are several different strategies for designing a computer system. Uniprocessor systems have only a single processor while multiprocessor system contain two or more processors that share physical memory and peripheral devices. The most common multiprocessor design is symmetric multiprocessing (or SMP), where all processor are considered peers and run independently of one another. Clustered systems are a specialized form of multiprocessor system and consist of multiple computer system connected by a local area network. To best utilize the CPU, modern operating systems employ multiprogramming, which allows several jobs to be in memory at the same time, thus ensuring the CPU always has a job to execute. Timesharing systems are an extension of multiprogramming whereby CPU scheduling algorithms rapidly switch between jobs, thus providing the illusion each job is running concurrently.
+
+	The operating system must ensure correct operation of the computer system. To prevent user programs from interfering with the proper operation of the system, the hardware has two modes: user mode and kernel mode. Various instructions (such as I/O instructions and halt instructions) are privileged and can be executed only in kernel mode. The memory in which the operating system resides must also be protected from modification by the user. A timer prevents infinite loops. These facilities (dual mode, privileged instructions, memory protection, and timer interrupt) are basic building blocks used by operating system to achieve correct operation.
+
+	A process (or job) is the fundamental unit of work in an operating system. Process management includes creating and deleting processes and providing mechanisms for processes to communicate and synchronize with another. An operating system manages memory by keeping track of which parts of memory are being used and by whom. The operating system is also responsible for dynamically allocating and freeing memory space. Storage space is also managed by the operating system and this includes providing file systems for representing files and directories and managing space on mass storage devices.
+	
+	Operating system must also be concerned with protecting and securing the operating system and users. Protection are mechanisms that control the access of processes or users to the resources made available by the computer system. Security measures are responsible for defending a computer system from external or internal attacks.
+
+	Distributed systems allow users to share resources on geographically dispersed hosts connected via a computer network. Services may be provided through either the client-server model or the peer-to-peer model. In a clustered system, multiple machines can perform computations on data residing on shared storage, and computing can continue even when some subset of cluster members fails.
+
+	LANs and WANs are the two basic types of networks. LANs enable processors distributed over a small geographical area to communicate, whereas WANs allow processors distributed over a larger area to communicate. LANs typically are faster than WANs.
+
+	There are several computer system that serve specific purposes. These include real-time operating systems designed for embedded environments such as consumer devices, automobiles, and robotics. Real-time operating system have well defined, fixed time constraints. Processing MUST be done within the defined constraints, or the system will fail. Multimedia systems involve the delivery or multimedia data and often have special requirements of displaying or playing audio, video, or synchronized audio and video streams.
+	
+	Recently, the influence of the Internet and the World Wide Web has encourage the development of modern operating systems that include web browsers and networking and communication software as integral features.
+
+
