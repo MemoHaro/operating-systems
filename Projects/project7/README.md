@@ -10,8 +10,7 @@ Write a program in C to simulate the Sleeping Barder problem as outlined below, 
 
 ## Issues
 
-    There are numerous issues related to the timing of theses activities. For example, a customer may arrive and observe that the barber is cutting hair, so he goes to the waiting room. While he is on his way, the barber finishes the haircut he is doing and goes to check the waiting room. Since there is no-one there, (the customer hasn't arrived yet) he goes back to his chair and sleeps. The barber is now waiting for a customer and the customer is waiting for the barber.
-    In another example, two customers may arrive at the same time, observe that the barber is cutting hair and there is a single seat in the waiting room, and go to the waiting room. They will both then attempt to occupy the single chair.
+There are numerous issues related to the timing of theses activities. For example, a customer may arrive and observe that the barber is cutting hair, so he goes to the waiting room. While he is on his way, the barber finishes the haircut he is doing and goes to check the waiting room. Since there is no-one there, (the customer hasn't arrived yet) he goes back to his chair and sleeps. The barber is now waiting for a customer and the customer is waiting for the barber. In another example, two customers may arrive at the same time, observe that the barber is cutting hair and there is a single seat in the waiting room, and go to the waiting room. They will both then attempt to occupy the single chair.
 
 ## Solution Description
 
@@ -28,20 +27,21 @@ The following solution in pseudo-code guarantees synchronization between barber 
 
 The Barber Process:
 
-// runs in an infinite loop
-while (true) {
-    // tries to acquire a customer      
-    P(customers)
-    // modify the number of available seats
-    P(access_seats)
-    // one chair gets free
-    number_of_free_seats++;
-    // the barber is ready to cut
-    V(barber)
-    // we don't need the lock on the chairs
-    V(access_seats)
-    // here the barber is cutting chair
-}
+
+    // runs in an infinite loop
+    while (true) {
+        // tries to acquire a customer      
+        P(customers)
+        // modify the number of available seats
+        P(access_seats)
+        // one chair gets free
+        number_of_free_seats++;
+        // the barber is ready to cut
+        V(barber)
+        // we don't need the lock on the chairs
+        V(access_seats)
+        // here the barber is cutting chair
+    }
 
 The Customer Process:
 
