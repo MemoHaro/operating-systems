@@ -1,9 +1,9 @@
 # Review Questions
 
 1. Represent the precedence graph pictured below with the following constructs:
-..1. fork/join
-..2. parabegin/parend
-..3. semaphores
+  * fork/join
+  * parabegin/parend
+  * semaphores
 
 2. Define the critical section problem and give in pseudo-code a solution for two processes. Justify your solution.
 
