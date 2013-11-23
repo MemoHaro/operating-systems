@@ -1,6 +1,3 @@
-
-/*** fileaccess.c ***/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -11,55 +8,41 @@
 
 int main(int argc, char *argv[]) 
 {
-  int errors, k;
   struct stat buf;
   struct passwd *passwd;
-  char *p, *file, *home;
+  char *file, *home;
   uid_t uid; 
   gid_t gid;
-  errors = 0;
   
   passwd = getpwuid(getuid());
   uid = getuid();
   gid = getgid();
-  // print the user name, from the passwd struct
-  //printf("User: %s\n", passwd->pw_name); 
-  // print the users home directory
-  //printf("Home: %s\n", passwd->pw_dir);
-  // prints the users shell
-  //printf("Shell: %s\n", passwd->pw_shell);
 
+  int k;
   for (k = 1; k < argc; k++) {
     // File is absolute
     if(argv[k][0] == '/') {
-      file = argv[k];
-      printf("File is absolute\n");
+      file = malloc(sizeof(argv[k]));
+      file = strdup(argv[k]);
     }
     // File is relative 
     else {
       home = passwd->pw_dir;
       //concat the homedirectory to argv[k]
-      printf("File is relative\n");
-      printf("Users' home directory: %s\n", home);
       file = malloc(sizeof(home) + 1 + sizeof(argv[k]));
       strcat(file, home);
       strcat(file, "/");
-      strcat(file, argv[k]);
-      printf("File is now: %s\n", file);
+      strcat(file, argv[k]);      
     }
     /* fetch inode information */
-    if (stat(argv[k], &buf) == (-1)) {
+    if (stat(file, &buf) == (-1)) {
       fprintf(stderr, "%s: cannot access %s\n",
                        argv[0], argv[k]);
-      errors++;
-      continue;
+      exit(1);
     }
 
-    if(argv[k][0] == '/') {
-      printf("Absolute, don't need to do anything.\n");
-    }
+    printf("%s\n", file);
 
-    printf("File: %s - ", argv[k]);
     /* print file permissions */
     if(uid == buf.st_uid) {
       printf("File owner:\n"); 
@@ -99,9 +82,7 @@ int main(int argc, char *argv[])
       }
     }    
   }
-  if (errors)
-    exit(1);
-  else
-    exit(0);
+  free(file);
+  exit(0);
 }
 
