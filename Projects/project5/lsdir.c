@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 
 void print_dir(char *d);
 
@@ -21,26 +23,23 @@ int main(int argc, char **argv)
   return 0;
 }
 
-// Initial call that calls the recursive _print_dir
+// Recursively prints out directories
 void print_dir(char *d)
 {
   DIR *dp;
   struct dirent *dir;
-  if ((dp = opendir(d)) == NULL) {
+  chdir(d);
+  if ((dp = opendir(".")) == NULL) {
     fprintf(stderr, "lsdir: cannot open directory %s.\n", d);
     exit(1);
   }
-  while (dir = readdir(dp)) {
-    if(dir->d_ino == 0) continue;
-    
-    // Recursively call print_dir on directories   
-    if((dp = opendir(dir->d_name)) != NULL) {
-      if (dir->d_name == "." || dir->d_name == "..") break;
-      // Print name of directory
+  while ((dir = readdir(dp)) != NULL) {
+    if (dir->d_ino == 0) continue;
+    if (strcmp(dir->d_name,".") == 0 || strcmp(dir->d_name,"..") == 0) continue;   
+
+    if (dir->d_type & DT_DIR) {
       printf("%s\n", dir->d_name);
-      // Call our print_dir function
       print_dir(dir->d_name);
-      closedir(dp);
     }
   }  
   closedir(dp);
