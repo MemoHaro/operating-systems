@@ -40,6 +40,7 @@ void print_dir(char *d)
     if (dir->d_type & DT_DIR) {
       printf("%s\n", dir->d_name);
       print_dir(dir->d_name);
+      chdir("..");
     }
   }  
   closedir(dp);
