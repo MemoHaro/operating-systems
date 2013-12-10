@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+
+void print_dir(char *d);
+
+int main(int argc, char **argv)
+{
+  // One file passed
+  if(argc == 2) {
+    print_dir(argv[1]);
+  }
+  // No files passed, use cwd
+  else if(argc == 1) {
+    print_dir(".");
+  }
+  else {
+    fprintf(stderr, "lsdir: too many files.\n");
+    exit(1);
+  }
+  return 0;
+}
+
+// Recursively prints out directories
+void print_dir(char *d)
+{
+  DIR *dp;
+  struct dirent *dir;
+  chdir(d);
+  if ((dp = opendir(".")) == NULL) {
+    fprintf(stderr, "lsdir: cannot open directory %s.\n", d);
+    exit(1);
+  }
+  while ((dir = readdir(dp)) != NULL) {
+    if (dir->d_ino == 0) continue;
+    if (strcmp(dir->d_name,".") == 0 || strcmp(dir->d_name,"..") == 0) continue;
+
+    if (dir->d_type & DT_DIR) {
+      printf("%s\n", dir->d_name);
+      print_dir(dir->d_name);
+      chdir("..");
+    }
+  }
+  closedir(dp);
+}
+
+cat test-script.sh
+#!/bin/bash
+
+# awk '/^d/ { print $9 }' is equivalent to grep '^d' | awk '{ print $9 }'
+# Uses named pipes to compare the streams from both my program and the shell script
+# No output is good output
+diff <(ls -Rl $1 | awk '/^d/ { print $9 }' | sort) <(./lsdir $1 | sort)
+
+./lsdir ..
+project3
+project8
+project7
+project4
+project5
+project6
+project2
+project1
+
+./lsdir .. | sort
+project1
+project2
+project3
+project4
+project5
+project6
+project7
+project8
+
+./test-script.sh
