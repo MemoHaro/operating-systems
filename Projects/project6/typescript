@@ -1,3 +1,5 @@
+$ cat my_wc_fork.c
+
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
@@ -177,3 +179,26 @@ struct count process_file(FILE *fp)
   }
   return filecount;
 }
+
+$ ./mywc_fork my_wc_fork.c README.md
+  179   562  3978 mywc_fork.c 	PID: 19357
+    8   111   642 README.md 	PID: 19358
+  187   673  4620 total
+
+$ ./mywc_fork mywc_fork.c README.md
+  179   562  3978 mywc_fork.c 	PID: 19357
+    8   111   642 README.md 	PID: 19358
+  187   673  4620 total
+
+$ wc mywc_fork.c README.md
+ 179  562 3978 mywc_fork.c
+   8  111  642 README.md
+ 187  673 4620 total
+
+$ ./mywc_fork -l mywc_fork.c
+  179 mywc_fork.c 	PID: 19368
+
+$ ./mywc_fork -lc mywc_fork.c example.c
+   56  929 example.c 	PID: 19381
+  179 3978 mywc_fork.c 	PID: 19380
+  235  4907 total

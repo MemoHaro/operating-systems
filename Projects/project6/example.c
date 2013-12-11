@@ -10,12 +10,13 @@ int main()
   int a[3][3] = {{1, 1, 1},
 		 {2, 2, 2},
 		 {3, 3, 3}},
-    i, row_sum, sum = 0, pd[2];
+    i, row_sum = 0, sum = 0, pd[2];
 
   // create a pipe
   if(pipe(pd) == -1) {
     error_exit("pipe() failed");
   }
+
   // N = 3
   for(i = 0; i < 3; ++i) {
     if(fork() == 0) {
@@ -30,8 +31,8 @@ int main()
   for(i = 0; i < 3; ++i) {
     if(read(pd[0], &row_sum, sizeof(int)) == -1) {
       error_exit("read() failed");
-      sum += row_sum;
     }    
+    sum += row_sum;
   }
   printf("Sum of the array = %d\n", sum);
 
