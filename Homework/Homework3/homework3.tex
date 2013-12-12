@@ -117,7 +117,22 @@ Where
   % 4
 \item The critical section problem is to design a protocol that solves the problem of a critical section. A critical section is a section in which many process need to access common variables, update a table, write to a file, and so on. When one process is in the critical section no other process may be in their critical section. Each process must request permission to enter its critical section. The section of code implementing this request is called the \textbf{entry section}. After the critical section there is an \textbf{exit section}, where the process may alert that it is out of the critical section.
 % 5
-\item 
+\item If we are giving the availability of a software solution to the critical section problem we can define a semaphore as such:
+\begin{alltt}
+  wait(s) \{
+    while S <= 0;
+    // Critical section
+    S--;
+    // End Critical section
+  \}
+
+  signal(s) \{
+    // Critical section
+    S++;
+    // End Critical section
+  \}
+\end{alltt}
+
 
 \end{enumerate}
 \end{document}
