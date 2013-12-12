@@ -68,11 +68,54 @@ S8;
     \item parbegin/parend with semaphores
   \end{enumerate}
   % 2
-\item
+\item A pipe a piece of shared memory with functions read and write. If we have a semaphore available, then the code to implement one may look like this:\\
+Where
+\begin{alltt}
+  buffer[n];
+  empty = n; (the number of spaces left in buffer)
+  full = 0;
+  mutex;
+\end{alltt}
+
+\begin{alltt}
+  read() \{
+    wait(full);
+    wait(mutex);
+    // Read item from buffer
+    signal(mutex);
+    signal(empty);
+  \} while (TRUE);
+\end{alltt}
+
+\begin{alltt}
+  write(character) \{
+    wait(empty);
+    wait(mutex);
+    // add an item to the buffer
+    signal(mutex);
+    signal(full);
+  \}
+\end{alltt}
+
 % 3
-\item
-% 4
-\item
+\item A semaphore $S$ is an integer variable with atomic operations $wait()$ and $signal()$. If we have pipes available, an implementation of one could be as follows:
+  \begin{alltt}
+    // Given a pipe called pipe
+    wait(S) \{
+      read(pipe);
+      S--;
+    \}
+  \end{alltt}
+  
+  \begin{alltt}
+    // Given a pipe called pipe
+    signal(S) \{
+      // Write an arbitrary character to pipe
+      write(pipe,'z');
+    \}
+  \end{alltt}
+  % 4
+\item The critical section problem is to design a protocol that solves the problem of a critical section. A critical section is a section in which many process need to access common variables, update a table, write to a file, and so on. When one process is in the critical section no other process may be in their critical section. Each process must request permission to enter its critical section. The section of code implementing this request is called the \textbf{entry section}. After the critical section there is an \textbf{exit section}, where the process may alert that it is out of the critical section.
 % 5
 \item 
 

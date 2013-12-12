@@ -5,13 +5,14 @@
 \usepackage{fancyhdr}
 \usepackage{multicol}
 \usepackage{alltt}
+\usepackage{multirow}
 
 \pagestyle{fancy}
 
 \rhead{
   Stefan Eng\\
   Comp 322\\
-  11/12/13
+  12/12/13
 }
 
 \renewcommand{\headrulewidth}{0pt}
@@ -20,43 +21,66 @@
 
 \begin{center}
     \section*{Homework 4}
+    \subsection*{Seventh Edition}
 \end{center}
 
 \subsection*{Chapter 7}
 \begin{enumerate}
-\setcounter{enumi}{2}
-\item 2
-\setcounter{enumi}{6}
+\setcounter{enumi}{1}
+\item In the dining philosophers problem:
+\begin{itemize}
+\item \textbf{Mutual Exclusion}: When a philosopher picks up a chopstick (a resource), no other philosopher may pick up the same chopstick.
+\item \textbf{Hold and Wait}: When a philosopher picks up a chopstick, he/she waits for another chopstick before eating. So the philosopher is holding one resources, and waiting for another.
+\item \textbf{No preemption}: In the dining philosophers problem, each person only gives up their chopsticks after eating. So each philosopher only releases his/her resources after eating is complete. No mention of preemption, such as an omniscient being to take chopsticks away from the philosophers.
+\item \textbf{Circular Wait}: If each philosopher picks up one chopstick, then philosopher 1 waits for philosopher 2 to put down the chopstick, who waits for philosopher 3, who waits for 4, who waits for 5 who is waiting for the first one.
+\end{itemize}
+To end the deadlock any of these conditions must be eliminated.
+%Mutual exclusion could be eliminated by allowing a philosopher to steal the chopstick out of one of the others hand.
+Mutual exclusion cannot be eliminated because the chopsticks cannot be shared. Only one philosopher may use a chopstick at once.
+% This may have other problems but there would no longer be a deadlock.
+Since circular wait implies hold and wait, we would only need to fix hold and wait and both of those conditions would no longer deadlock.
+%To remove the hold and wait condition, ...
+%To remove hold and wait, it is similar to the solutions described for mutual exclusion; allow other philosophers to take chopsticks out of the others hand
+%To remove no preemption, we could have an omniscient philosopher which could remove chopsticks out of a philosopher's hand when he/she has been holding onto a resource too long.
+\setcounter{enumi}{5}
 \item 6
-\setcounter{enumi}{8}
+\setcounter{enumi}{7}
 \item 8
-\setcounter{enumi}{11}
-\item 11
+\setcounter{enumi}{10}
+\item
+  \begin{tabular}{l r r r r }
+    & \multicolumn{4}{c}{Need}
+    \\
+    \cline{2-5}
+          & A & B & C & D\\
+    $P_0$ & 0 & 0 & 0 & 0\\
+    $P_1$ & 0 & 7 & 5 & 0\\
+    $P_2$ & 1 & 0 & 0 & 2\\
+    $P_3$ & 0 & 0 & 2 & 0\\
+    $P_4$ & 0 & 6 & 4 & 2
+  \end{tabular}
 \end{enumerate}
 
 \subsection*{Chapter 8}
 \begin{enumerate}
-\setcounter{enumi}{1}
+\setcounter{enumi}{0}
 \item 1
-\setcounter{enumi}{4}
+\setcounter{enumi}{3}
 \item 4
-\setcounter{enumi}{5}
+\setcounter{enumi}{4}
 \item 5
-\setcounter{enumi}{9}
+\setcounter{enumi}{8}
 \item 9
-\setcounter{enumi}{13}
+\setcounter{enumi}{12}
 \item 13
 \end{enumerate}
 
 \subsection*{Chapter 9}
 \begin{enumerate}
-\setcounter{enumi}{12}
+\setcounter{enumi}{11}
 \item 12
-\setcounter{enumi}{13}
 \item 13
-\setcounter{enumi}{14}
 \item 14
-\setcounter{enumi}{15}
 \item 15
 \end{enumerate}
 
