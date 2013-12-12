@@ -73,29 +73,33 @@ To remove no preemption, we could have an omniscient philosopher which could rem
 \setcounter{enumi}{3}
 \item
   \begin{enumerate}
-    \item Contiguous-memory allocation:
-    \item Pure segmentation:
-    \item Pure Paging:
+    \item Contiguous-memory allocation: Since the blocks are right next to each other, there may be need to reorganize the blocks at some point when processes are released and fragmentation occurs.
+    \item Pure segmentation: If a segment cannot grow then it is possible to have to reallocated all of the memory.
+    \item Pure Paging: Relocation is not required, because each part of the data can be stored separately and thus allowing the operating system to not have to relocate.
   \end{enumerate}
 \setcounter{enumi}{4}
 \item \begin{enumerate}
-    \item External Fragmentation:
-    \item Internal Fragmentation:
-    \item Ability to share code across processes:
+    \item External Fragmentation: Contiguous memory allocation suffers the most from external fragmentation. This is because each process is contained in a signal section of memory, so holes develop. Pure segmentation also suffers from external fragmentation. Pure paging does not suffer from external fragmentation.
+    \item Internal Fragmentation: Contiguous memory does not suffer from internal fragmentation. Similarly for pure segmentation. Pure paging suffers from internal fragmentation because it allocates blocks to each process which may be bigger than a segment of a process needs.
+    \item Ability to share code across processes: Contiguous memory does not allow processes to share code. Segmentation allows a process to share code. Pure paging also allows a process to share code.
   \end{enumerate}
 \setcounter{enumi}{8}
-\item 9
+\item 
+  \begin{enumerate}
+  \item 400 nanoseconds
+  \item 250 nanoseconds
+  \end{enumerate}
 \setcounter{enumi}{12}
-\item 13
+\item If a page table becomes large enough it has the same problems as regular memory. Less commonly used things could be swapped if they are paged. Also, memory could be allocated fixed-sized instead of variable-size)
 \end{enumerate}
 
 \subsection*{Chapter 9}
 \begin{enumerate}
 \setcounter{enumi}{11}
-\item 12
-\item 13
-\item 14
-\item 15
+\item A flag could be added to implement this. The negatives to this are that there is not too much information about the page and how long it has been around. Benefits are that the implementation is simple.
+\item
+\item 0.5 milliseconds
+\item Thrashing is caused by continuously page faulting. This occurs when there is an underallocation of pages.
 \end{enumerate}
 
 \end{document}
