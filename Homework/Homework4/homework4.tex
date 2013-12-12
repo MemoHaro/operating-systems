@@ -35,20 +35,21 @@
 \item \textbf{Circular Wait}: If each philosopher picks up one chopstick, then philosopher 1 waits for philosopher 2 to put down the chopstick, who waits for philosopher 3, who waits for 4, who waits for 5 who is waiting for the first one.
 \end{itemize}
 To end the deadlock any of these conditions must be eliminated.
-%Mutual exclusion could be eliminated by allowing a philosopher to steal the chopstick out of one of the others hand.
-Mutual exclusion cannot be eliminated because the chopsticks cannot be shared. Only one philosopher may use a chopstick at once.
-% This may have other problems but there would no longer be a deadlock.
+Mutual exclusion could be eliminated by allowing a philosopher to steal the chopstick out of one of the others hand.
+%Mutual exclusion cannot be eliminated because the chopsticks cannot be shared. Only one philosopher may use a chopstick at once.
+This may have other problems but there would no longer be a deadlock.
 Since circular wait implies hold and wait, we would only need to fix hold and wait and both of those conditions would no longer deadlock.
 %To remove the hold and wait condition, ...
-%To remove hold and wait, it is similar to the solutions described for mutual exclusion; allow other philosophers to take chopsticks out of the others hand
-%To remove no preemption, we could have an omniscient philosopher which could remove chopsticks out of a philosopher's hand when he/she has been holding onto a resource too long.
+To remove hold and wait, it is similar to the solutions described for mutual exclusion; allow other philosophers to take chopsticks out of the others hand
+To remove no preemption, we could have an omniscient philosopher which could remove chopsticks out of a philosopher's hand when he/she has been holding onto a resource too long.
 \setcounter{enumi}{5}
-\item 6
+\item If each process tries to aquire a resource, there will be one resource left over. The remaining resource can be given to any one of the process, and it will eventually finish. This situation will never deadlock.
 \setcounter{enumi}{7}
-\item 8
+\item If it is the last chopstick remaining, check if any other philosopher is currently eating, and if no one else is, wait.
 \setcounter{enumi}{10}
 \item
-  \begin{tabular}{l r r r r }
+  \begin{enumerate}
+  \item \begin{tabular}{l r r r r }
     & \multicolumn{4}{c}{Need}
     \\
     \cline{2-5}
@@ -59,16 +60,29 @@ Since circular wait implies hold and wait, we would only need to fix hold and wa
     $P_3$ & 0 & 0 & 2 & 0\\
     $P_4$ & 0 & 6 & 4 & 2
   \end{tabular}
+  \item The system is in a safe state. One way the processes could run is: $P_0$, (Available = (1,5,3,2)), $P_3$, (Available = (1,11,6,4)), $P_1$ (Available = (2,11,6,4)), $P_4$, (Available = (2,11,7,8)). Thus, all processes are in a safe state.
+  \item If a request arrives from process $P_1$ for (0,4,2,0). The request will reduce avaliable to (1,1,0,0). The system is still safe because we can run $P_0$, $P_2$, $P_3$, $P_1$, and $P_4$.
+  \end{enumerate}
+
 \end{enumerate}
 
 \subsection*{Chapter 8}
 \begin{enumerate}
 \setcounter{enumi}{0}
-\item 1
+\item \textbf{External Fragmentation}: Occurs when processes are loaded and removed from memory, and the free memory space is broken into little pieces. \textbf{Internal Fragmentation}: Memory that is internal to a partition but is not being used.
 \setcounter{enumi}{3}
-\item 4
+\item
+  \begin{enumerate}
+    \item Contiguous-memory allocation:
+    \item Pure segmentation:
+    \item Pure Paging:
+  \end{enumerate}
 \setcounter{enumi}{4}
-\item 5
+\item \begin{enumerate}
+    \item External Fragmentation:
+    \item Internal Fragmentation:
+    \item Ability to share code across processes:
+  \end{enumerate}
 \setcounter{enumi}{8}
 \item 9
 \setcounter{enumi}{12}
